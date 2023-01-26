@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .custom-container {
+        @apply container mx-auto px-6 md:px-10 xl:px-16;
+    }
+}
+

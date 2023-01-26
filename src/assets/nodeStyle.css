@@ -1,0 +1,254 @@
+
+/*all*/
+.connector6 {
+  position: relative;
+
+  width: 50px;
+  top: 54px;
+  z-index: 2;
+}
+
+.connector6:before {
+  position: absolute;
+  border-right: 2px dashed #999;
+  width: 0;
+  height: 120px;
+  display: block;
+  content: '';
+  left: 40px;
+  rotate: 180deg;
+  z-index: -1;
+  top: -96px;
+  margin-left: -1px;
+}
+
+.connector6:first-child:before {
+  display: none;
+}/*all*/
+.connector7 {
+  position: relative;
+
+  width: 50px;
+  top: 54px;
+  z-index: 2;
+}
+
+.connector7:before {
+  position: absolute;
+  border-right: 2px dashed #999;
+  width: 0;
+  height: 120px;
+  display: block;
+  content: '';
+  left: 40px;
+  rotate: 180deg;
+  z-index: -1;
+  top: 100px;
+  margin-left: -1px;
+}
+
+.connector7:first-child:before {
+  display: none;
+}
+
+
+/*index 0*/
+.connector2 {
+  position: relative;
+
+  width: 50px;
+  top: 54px;
+  z-index: 2;
+}
+
+.connector2:before {
+  position: absolute;
+  border-right: 2px dashed #999;
+  width: 0;
+  height: 240px;
+  display: block;
+  content: '';
+  left: 277px;
+  rotate: 121deg;
+  z-index: -1;
+  top: -113px;
+  margin-left: -1px;
+}
+
+.connector2:first-child:before {
+  display: none;
+}
+
+
+.connector4 {
+  position: relative;
+
+  width: 50px;
+  top: 54px;
+  z-index: 2;
+}
+
+.connector4:before {
+  position: absolute;
+  border-right: 2px dashed #999;
+  width: 0;
+  height: 700px;
+  display: block;
+  content: '';
+  left: 505px;
+  rotate: 100deg;
+  z-index: -1;
+  top: -345px;
+  margin-left: -1px;
+}
+
+.connector4:first-child:before {
+  display: none;
+}
+
+
+
+/*index 1*/
+
+.connector13 {
+  position: relative;
+
+  width: 50px;
+  top: 54px;
+  z-index: 2;
+}
+
+
+.connector13:before {
+  position: absolute;
+  border-right: 2px dashed #999;
+  width: 0;
+  height: 299px;
+  display: block;
+  content: '';
+  left: 30px;
+  rotate: -113deg;
+  z-index: -1;
+  top: -140px;
+  margin-left: -1px;
+}
+
+.connector13:first-child:before {
+  display: none;
+}
+
+
+.connector12 {
+  position: relative;
+
+  width: 50px;
+  top: 54px;
+  z-index: 2;
+}
+
+.connector12:before {
+  position: absolute;
+  border-right: 2px dashed #999;
+  width: 0;
+  height: 290px;
+  display: block;
+  content: '';
+  left: 280px;
+  rotate: 117deg;
+  z-index: -1;
+  top: -147px;
+  margin-left: -1px;
+}
+
+.connector12:first-child:before {
+  display: none;
+}
+
+
+/*index 2*/
+
+
+.connector23 {
+  position: relative;
+
+  width: 50px;
+  top: 54px;
+  z-index: 2;
+}
+
+
+.connector23:before {
+  position: absolute;
+  border-right: 2px dashed #999;
+  width: 0;
+  height: 289px;
+  display: block;
+  content: '';
+  left: 78px;
+  rotate: -118deg;
+  z-index: -1;
+  top: -143px;
+  margin-left: -1px;
+}
+
+.connector23:first-child:before {
+  display: none;
+}
+
+.connector25 {
+  position: relative;
+
+  width: 50px;
+  top: 54px;
+  z-index: 2;
+}
+
+.connector25:before {
+  position: absolute;
+  border-right: 2px dashed #999;
+  width: 0;
+  height: 700px;
+  display: block;
+  content: '';
+  left: -158px;
+  rotate: -100deg;
+  z-index: -1;
+  top: -342px;
+  margin-left: -1px;
+}
+
+.connector25:first-child:before {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  height: 16px;              /* height of horizontal scrollbar ← You're missing this */
+  width: 10px;               /* width of vertical scrollbar */
+  border: 1px solid #d5d5d5;
+  background: #9ca3af;
+}
+::-webkit-scrollbar:horizontal {
+  height: 6px;
+  background-color: red;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  background: #1111;
+  border-radius: 10px;
+
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1111;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #1111;
+}
+
