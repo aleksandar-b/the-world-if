@@ -5,7 +5,11 @@
 	.st2{fill:#3EA8DF;}
     .st3{fill:#FFFFFF;}
 </style>
-    <rect x="5136" class="st0" width="1024" height="1024"/>
+    <rect x="5136" fill="#f49900" width="1024" height="1000"/>
+    <rect x="5136" fill="#f17d00" width="1024" height="800"/>
+    <rect x="5136" fill="#ee6100" width="1024" height="600"/>
+    <rect x="5136" fill="#ea3b01" width="1024" height="400"/>
+    <rect x="5136" fill="#e10c02" width="1024" height="200"/>
     <rect x="5301" y="189.5" class="st3" width="80.5" height="645"/>
     <rect x="5400.5" y="189.5" class="st3" width="80.5" height="645"/>
     <polyline class="st3" points="5994,259.5 5994,189.5 5565,189.5 5565,834.5 5645.5,834.5 5645.5,259.5 "/>

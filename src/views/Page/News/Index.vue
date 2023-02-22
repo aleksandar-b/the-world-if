@@ -14,7 +14,7 @@
         <Spinner class="animate-spin"/>
       </div>
       <div class="text-center mt-2">
-        Please wait, We are fetching data...
+        Please wait, while we are fetching AI generated headlines...
       </div>
     </div>
     <Grid :options="options" v-else/>

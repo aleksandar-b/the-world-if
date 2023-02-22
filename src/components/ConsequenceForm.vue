@@ -2,27 +2,37 @@
 
   <DialogBox @confirm="saveData" buttonName="Save" :heading='`Add consequence`' v-model="isOpen"
              @cancelClick="emit('update:modelValue', false)">
+    <div class="flex flex-col justify-center items-center p-2" style="background-image: url(/public/dot.png)">
+      <Event :option="props.option" />
+      <div class="inline-block font-medium px-2 mt-2 py-0.5 rounded bg-gray-100 text-gray-600">
+        <p class="text-xs uppercase">THEN</p>
+      </div>
+    </div>
     <form @submit.prevent="saveData">
-
-      <div class="overflow-auto grid gap-y-4 pb-10">
-        <FormGroupInput required v-model="form.name" label="Title"/>
+      <div class="overflow-auto grid gap-y-4 pb-10 p-6 border-t border-gray-200">
+        <FormGroupInput required v-model="form.name" label="Title" placeholder="Price of oil decreases by 10%"/>
+        <FormMultiselect return-value="name" required :options="categories" v-model="form.category"
+                         label="Category"/>
 
         <div class="grid grid-cols-2 gap-4">
           <FormMultiselect :options="options" v-model="form.impact" label="impact"/>
-          <FormGroupInput v-model="form.probability" label="probability"/>
+          <FormGroupInput v-model="form.magnitude" label="magnitude"/>
         </div>
 
-        <FormMultiselect return-value="name" required :options="categories" v-model="form.category"
-                         label="Select Category"/>
+        <div class="grid grid-cols-2 gap-4">
+          <FormGroupInput v-model="form.probability" label="probability"/>
+        </div>
 
         <FormGroupTextarea v-model="form.description" label="Description"/>
 
         <div v-for="(item,index) in form.actions" :key="index">
-          <FormGroupInput v-model="item.action" label="Action"/>
+          <FormGroupInput v-model="item.action" label="Action" placeholder="Buy Tesla stocks..."/>
         </div>
         <div>
           <Button type="button" @click="form.actions.push({})">Add Action</Button>
         </div>
+
+        <Toggle class="mt-8" v-model="form.probability" description="Notify me when this event happens in world" label="Notify me" />
       </div>
       <div>
         <div class=" px-4 py-3 flex sm:flex-row-reverse pt-3 ">
@@ -55,6 +65,8 @@ import {useRoute} from "vue-router";
 import FormMultiselect from "@/components/Form/FormMultiselect.vue";
 import {useSearchStore} from "@/Store/SearchOptions";
 import FormGroupTextarea from "@/components/Form/FormGroupTextarea.vue";
+import Event from "@/views/Page/Graph/Event.vue";
+import Toggle from "@/components/Form/Toggle.vue";
 
 const {categories} = useSearchStore();
 const options = [
@@ -63,18 +75,7 @@ const options = [
   {id: 'neutral', name: 'Neutral'},
 ]
 const {id} = useRoute().params;
-const defaultData = {
-  name: '',
-  predictor: '',
-  impact: '',
-  category: '',
-  description: '',
-  probability: '',
-  label: '',
-  value: '',
-  actions: [{}],
-}
-const form = ref(defaultData)
+
 const props = defineProps({
   length: {
     type: [Number, String, Boolean],
@@ -82,10 +83,23 @@ const props = defineProps({
   },
   option: {
     type: Object,
-    default: [],
+    default: {},
   },
   modelValue: Boolean,
 });
+
+const defaultData = {
+  name: '',
+  predictor: '',
+  impact: '',
+  category: props.option.category,
+  description: '',
+  probability: '',
+  label: '',
+  value: '',
+  actions: [{}],
+}
+const form = ref(defaultData)
 const isOpen = ref(props.modelValue);
 watch(() => props.modelValue, (_new, _old) => {
   isOpen.value = _new;

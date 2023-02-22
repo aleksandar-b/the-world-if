@@ -34,7 +34,7 @@ const props = defineProps({
   },
   classes: {
     type: String,
-    default: 'w-full max-w-lg'
+    default: 'w-full max-w-xl'
   },
   showCancelButton: {
     type: Boolean,
@@ -84,7 +84,7 @@ function cancelDialog() {
               leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-                class=" transform rounded-sm bg-white text-left align-middle shadow-xl transition-all"
+                class=" transform rounded-sm bg-white text-left align-middle shadow-xl transition-all rounded-xl"
                 :class="`${overflowHidden&&'overflow-hidden'} ${classes}`">
 
               <slot name="header">

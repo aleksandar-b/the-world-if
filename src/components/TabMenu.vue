@@ -1,15 +1,22 @@
 <template>
-  <div class="flex divide-x justify-center">
-    <div v-for="(item,index) in tabs" :key="index">
+  <div class="flex divide-x justify-center my-4">
+    <div class="flex items-center justify-center">
+      <div class="inline-flex" role="group">
+        <div v-for="(item,index) in tabs" :key="index">
+          <button
+              v-if="!item.disabled"
+              type="button"
+              @click="changeTab(item)"
+              :class="{ 'bg-gray-300': item.key == activeTab, 'bg-gray-50': item.key != activeTab, 'border-l-0': index === 1, 'rounded-l': index === 0, 'rounded-r': index === 1 }"
+              class="px-6 py-2 border-2 border-gray-500 text-gray-600 font-medium text-xs leading-tight uppercase focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+          >
+            <slot :name="`btn${item.key}`">
+              {{ item.name }}
+            </slot>
+          </button>
 
-      <div v-if="!item.disabled" class="px-6 py-2 capitalize cursor-pointer hover:bg-gray-100"
-           :class="item.key == activeTab?'bg-gray-100':'bg-gray-50'"
-           @click="changeTab(item)">
-        <slot :name="`btn${item.key}`">
-          {{ item.name }}
-        </slot>
+        </div>
       </div>
-
     </div>
   </div>
   <div v-for="(item,index) in tabs" :key="index"

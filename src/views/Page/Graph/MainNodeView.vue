@@ -1,8 +1,8 @@
 <template>
-  <div class="flex justify-center pt-6 mb-4">
-    <Button @click="openDialog=true" class="bg-gray-900">Add Consequence</Button>
+  <div class="flex justify-center my-4">
+    <button @click="openDialog=true" class="rounded text-gray-600 border-2 border-gray-500 p-1.5 px-5">Add </button>
   </div>
-  <ConsequenceForm @getData="getData" v-model="openDialog"/>
+  <ConsequenceForm @getData="getData" :option="props.option" v-model="openDialog"/>
 </template>
 
 <script setup>

@@ -1,15 +1,15 @@
 <template>
   <AuthLayout classes="">
 
-    <!--    search input box section-->
+    <!--search input box section-->
     <section class="justify-center">
       <div class="max-w-2xl mx-auto">
-        <SearchInput/>
+        <SearchInput />
       </div>
     </section>
 
     <!--    tab section-->
-    <main class="mt-8" v-if="id">
+    <main v-if="id">
       <TabMenu @setActive="active_tab=$event" :tabs="tabs" :active="activeTab" :url="`/${id}`">
         <template #graph>
           <div class="grid bg-slate-50 overflow-auto">

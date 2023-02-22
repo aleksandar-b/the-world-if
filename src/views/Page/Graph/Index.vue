@@ -1,7 +1,7 @@
 <template>
   <div class="bg-slate-50">
 
-    <div class="mt-10">
+    <div>
       <!--      main node add button-->
       <MainNodeView :option="item"/>
 
@@ -19,7 +19,7 @@
 <script setup>
 import {useRoute} from "vue-router/dist/vue-router.mjs";
 import {useSearchStore} from "@/Store/SearchOptions";
-import Box from "@/views/Page/Graph/Box.vue";
+import Box from "@/views/Page/Graph/Layer.vue";
 import MainNodeView from "@/views/Page/Graph/MainNodeView.vue";
 import {computed} from "vue";
 

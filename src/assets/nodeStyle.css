@@ -4,7 +4,7 @@
   position: relative;
 
   width: 50px;
-  top: 54px;
+  top: 101px;
   z-index: 2;
 }
 
@@ -12,7 +12,7 @@
   position: absolute;
   border-right: 2px dashed #999;
   width: 0;
-  height: 120px;
+  height: 68px;
   display: block;
   content: '';
   left: 40px;
@@ -252,3 +252,30 @@
   background: #1111;
 }
 
+
+/* Animation scroll from left to right, alternate (translate)  */
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-scroll-left-to-right {
+    animation: scroll 5s linear alternate infinite;
+}
+
+.animate-scroll-right-to-left {
+  animation: scroll-left 5s linear alternate infinite;
+}

@@ -15,7 +15,7 @@ export const searchOptions = [
         icon: DocumentPlusIcon,
         name: 'I slipped from top floor',
         position: {x: 0, y: 0},
-        type: 'teleportable',
+        category: 'Economy',
         level: 0,
         parent_id: null
     }, {
@@ -24,7 +24,7 @@ export const searchOptions = [
         name: 'Oil Jumps 40%',
         viewType: true,
         position: {x: 0, y: 0},
-        type: 'teleportable',
+        category: 'Economy',
         level: 0,
         parent_id: null
     }, {
@@ -33,7 +33,7 @@ export const searchOptions = [
         icon: FolderPlusIcon,
         name: 'Russia Attacks Ukraine',
         position: {x: 0, y: 0},
-        type: 'teleportable',
+        category: 'Economy',
         level: 0,
         parent_id: null
     }, {
@@ -42,7 +42,7 @@ export const searchOptions = [
         icon: HashtagIcon,
         name: 'Alcohol is banned by law',
         position: {x: 0, y: 0},
-        type: 'teleportable',
+        category: 'Economy',
         level: 0,
         parent_id: null
     }, {
@@ -51,7 +51,7 @@ export const searchOptions = [
         icon: DocumentPlusIcon,
         name: 'Rushi Sunak becames PM',
         position: {x: 0, y: 0},
-        type: 'teleportable',
+        category: 'Economy',
         level: 0,
         parent_id: null
     }, {
@@ -60,7 +60,7 @@ export const searchOptions = [
         icon: FolderIcon,
         name: 'Recession is coming',
         position: {x: 0, y: 0},
-        type: 'teleportable',
+        category: 'Economy',
         level: 0,
         parent_id: null
     }, {
@@ -69,7 +69,7 @@ export const searchOptions = [
         icon: TagIcon,
         name: 'Olympics postponed to next year',
         position: {x: 0, y: 0},
-        type: 'teleportable',
+        category: 'Economy',
         level: 0,
         parent_id: null
     }, {
@@ -78,7 +78,7 @@ export const searchOptions = [
         icon: DocumentPlusIcon,
         name: 'Elon Musk bought twitter',
         position: {x: 0, y: 0},
-        type: 'teleportable',
+        category: 'Economy',
         level: 0,
         parent_id: null
     }, {
@@ -87,7 +87,7 @@ export const searchOptions = [
         icon: DocumentPlusIcon,
         name: 'Structure revamped twitter',
         position: {x: 0, y: 0},
-        type: 'teleportable',
+        category: 'Economy',
         level: 0,
         parent_id: null
     }, {
@@ -96,7 +96,7 @@ export const searchOptions = [
         icon: DocumentPlusIcon,
         name: 'I got no gun in front of dangerous animals',
         position: {x: 0, y: 0},
-        type: 'teleportable',
+        category: 'Economy',
         level: 0,
         parent_id: null
     },

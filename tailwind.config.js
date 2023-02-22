@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require('tailwindcss/colors')
+
+
 module.exports = {
     content: [
         "./index.html",
@@ -8,10 +11,10 @@ module.exports = {
         extend: {
             colors: {
                 primary: {
-                    DEFAULT: "#2463C5",
-                    hover: "#215AB5",
-                    focus: "#C7D9F5",
-                    active: "#1C4D9B",
+                    DEFAULT: colors.gray[700],
+                    hover: colors.gray[900],
+                    focus: colors.gray[600],
+                    active: colors.gray[500],
                     disabled: "#C7D9F5",
                     dark: "#28262C",
                     light: "#ABA8B3",
@@ -56,6 +59,7 @@ module.exports = {
                     "10px",
                 ],
             },
+            display: ["group-hover"]
         },
     },
     plugins: [

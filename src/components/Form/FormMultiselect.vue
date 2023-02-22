@@ -1,29 +1,13 @@
 <template>
     <div class="w-full">
         <InputLabel class="capitalize mb-1" :value="label" :required="required"/>
-        <div class="flex items-center space-x-2">
-            <Multiselect
-                :required="required"
-                :placeholder="placeholder"
-                :label="labelKey"
-                :trackBy="trackKey"
-                v-model="modelData"
-                :valueProp="returnValue"
-                :disabled="disabled"
-                :object="object"
-                :mode="mode"
-                :searchable="searchable"
-                :max="max"
-
-                :canClear="canClear"
-                :searchStart="searchStart"
+        <div class="space-x-2">
+            <Select
+                class="text-sm"
                 @change="emit('change',$event)"
                 @input="emit('update:modelValue', $event);"
                 :options="options">
-                <template #option="data">
-                    {{ data.option[trackKey] }}
-                </template>
-            </Multiselect>
+            </Select>
 
         </div>
         <InputError :message="error"/>
@@ -33,6 +17,8 @@
 <script setup>
 import InputLabel from "@/components/Form/InputLabel.vue";
 import InputError from "@/components/Form/InputError.vue";
+import Select from "@/components/Form/Select.vue";
+
 import Multiselect from '@vueform/multiselect';
 import {onMounted, ref, watch} from "vue";
 
