@@ -24,8 +24,8 @@
         <div :id="`mainsub${currentLevel}first`" @click="scrollDiv(`mainsub${currentLevel}first`)" class="li"></div>
 
         <!-- card design -->
-        <div class="li" v-for="(option,index) in options" :id="`mainsub${currentLevel}${index}`" @click="scrollDiv(`mainsub${currentLevel}${index}`)">
-          <Event :index="index" :option="option" :view-index="viewIndex" :get-sub-options="getSubOptions" :open-box="openBox" />
+        <div class="li" v-for="(option,index) in options" :id="`${option.id}`" @click="scrollDiv(`${option.id}`); setArrows(option)">
+          <Event :index="index" :option="option" :view-index="viewIndex" :get-sub-options="getSubOptions" :open-box="openBox" :onmouseenter="() => onHover(option)" :onmouseleave="() => onHover(option, true)" />
         </div>
         <!--        empty card for set center node card-->
         <div :id="`mainsub${currentLevel}last`" @click="scrollDiv(`mainsub${currentLevel}last`)" class="li"></div>
@@ -34,46 +34,15 @@
     </div>
     <!--    card design end-->
 
-    <!--    card line design-->
-    <div v-if="length && showCenter" class="px-1 flex justify-center absolute left-[46%]">
-      <div class="flex rotate-90 mt-[24px]">
-        <svg viewBox="0 0 12 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-[12px] h-[24px]">
-          <circle cx="6" cy="12" r="7" fill="#fff"></circle>
-          <circle cx="6" cy="12" r="4" fill="#1f2937"></circle>
-          <path fill="#1f2937" d="M9 11h3v2H9z"></path>
-        </svg>
-        <svg class=" w-[64px] h-[24px]" preserveAspectRatio="none" viewBox="0 0 64 24" fill="none" xmlns="http://www.w3.org/2000/svg" >
-          <path fill="url(#default-mid_react_svg__a)" d="M0 11h64v2H0z"></path>
-          <defs>
-            <linearGradient id="default-mid_react_svg__a" x1="0" y1="12" x2="64" y2="12" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#1f2937"></stop>
-              <stop offset="1" stop-color="#374151"></stop>
-            </linearGradient>
-          </defs>
-          <defs>
-            <filter x="0" y="0" width="1" height="1" id="solid">
-              <feFlood flood-color="rgb(248 250 252)"/>
-              <feComposite in="SourceGraphic" operator="xor"/>
-            </filter>
-          </defs>
-          <text class="fill-slate-800" filter="url(#solid)" text-anchor="middle" pointer-events="none" font-size="10px" x="30" y="15">CAUSES</text>
-          <text class="fill-slate-800" text-anchor="middle" pointer-events="none" font-size="10px" x="30" y="15">CAUSES</text>
-        </svg>
-        <svg width="1em" height="1em" viewBox="0 0 12 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-[12px] h-[24px]">
-          <path d="M2 7.957c0-.743.75-1.201 1.338-.82l6.233 4.044c.572.371.572 1.267 0 1.638l-6.233 4.043C2.749 17.244 2 16.786 2 16.044V7.957ZM0 11h2v2H0z" fill="#374151"></path>
-        </svg>
-      </div>
-    </div>
-    <!--    card line design end-->
 
     <!--    sub card render-->
-    <div class="w-full pt-20 relative" v-if=" length">
+    <div class="w-full pt-10 relative" v-if=" length">
 
       <!--    backdrop layer-->
       <div v-if="showMore"
-           class="w-full absolute inset-0 z-10 backdrop-blur-sm  bg-gradient-to-t from-white  flex justify-center">
+           class="w-full absolute inset-0 z-10 backdrop-blur-sm  bg-gradient-to-t from-white  flex justify-center align-middle items-center">
         <button @click="setLevel()" type="button"
-                class="relative mt-56 bg-slate-900 hover:bg-slate-700 focus:outline-none focus:ring-2
+                class="relative bg-slate-900 hover:bg-slate-700 focus:outline-none focus:ring-2
                  focus:ring-slate-400 focus:ring-offset-2 text-sm text-white font-semibold
                  h-12 px-6 rounded-lg flex items-center dark:bg-slate-700
                  dark:hover:bg-slate-600 pointer-events-auto">
@@ -84,7 +53,7 @@
 
       <!--    sub card render sub card self-->
       <div class="">
-        <Box :showTree="showTreeUpdate" :level="level+1" class="mx-auto" :options="subOptions"/>
+        <Layer :showTree="showTreeUpdate" :level="level+1" class="mx-auto" :options="subOptions" :arrows="arrows" @on-child-hover="onChildHover"/>
       </div>
       <!--    sub card render sub card self-->
     </div>
@@ -94,19 +63,28 @@
 </template>
 <script setup>
 import converter from "number-to-words";
-import Box from "@/views/Page/Graph/Layer.vue";
+import Layer from "@/views/Page/Graph/Layer.vue";
 import {useSearchStore} from "@/Store/SearchOptions";
+import {useArrowsStore} from "@/Store/Arrows";
 import {useRoute} from "vue-router";
-import {computed, onMounted, ref, watch} from "vue";
+import {computed, onDeactivated, onMounted, ref, watch} from "vue";
 import Button from "@/components/Form/Button.vue";
 import ConsequenceForm from "@/components/ConsequenceForm.vue";
 import "@/assets/nodeStyle.css"
 import Event from "@/views/Page/Graph/Event.vue";
+import colors from "tailwindcss/colors";
+import {onBeforeUnmount, onUnmounted} from "@vue/runtime-core";
+
+const emit = defineEmits(['on-child-hover'])
 
 const props = defineProps({
     options: {
       type: Object,
       default: []
+    },
+    arrows: {
+      type: Object,
+      default: {}
     },
     level: {
       type: [Number, String],
@@ -133,8 +111,34 @@ const props = defineProps({
         showCenter.value = true;
       }
     }
-  });
-  // sub node fetch when new node added
+
+    // add scroll event
+    const mainDiv = document.getElementById(`mainDiv${currentLevel.value}`);
+    const arrows = useArrowsStore().arrows;
+
+    mainDiv.addEventListener('scroll', function () {
+      // scroll position of mainDiv
+      const scrollPosition = mainDiv.scrollLeft;
+      // scroll position of subDiv
+      console.log("scroll-mainDiv-scrollPosition", scrollPosition);
+
+      Object.values(arrows).forEach((arrow) => {
+          arrow?.arrow?.position();
+      });
+      Object.values(props.arrows).forEach((arrow) => {
+          arrow?.arrow?.position();
+      });
+    }, false);
+  })
+
+  onDeactivated(() => {
+    useArrowsStore().removeArrows();
+  })
+  onUnmounted(() => {
+    useArrowsStore().removeArrows();
+  })
+
+// sub node fetch when new node added
   watch(() => props.showTree, (_old, _new) => {
     subOptions.value = store.getNodeById(props.options[0]?.id);
   })
@@ -177,13 +181,47 @@ const props = defineProps({
     store.setNode(item);
   }
 
+
+  const setArrows = (option) => {
+    removeArrows();
+
+    subOptions.value.forEach((subOption) => {
+      if (subOption.id !== option.id) {
+        // eslint-disable-next-line no-undef
+        const arrow = new LeaderLine({
+          start: document.getElementById(option.id),
+          end: document.getElementById(subOption.id),
+          startSocket: 'bottom',
+          endSocket: 'top',
+          startPlug: 'disc',
+          endPlug: 'arrow1',
+          size: 2,
+          dash: {len: 10, gap: 16},
+          color: colors.gray[200]
+        });
+
+        const data = {arrow, start: option.id, end: subOption.id, level: currentLevel.value};
+        useArrowsStore().setArrows(subOption.id, data);
+      }
+    })
+  }
+
+  const removeArrows = () => {
+    const arrows = useArrowsStore().arrows;
+    Object.values(arrows).forEach((arrow) => {
+      if (arrow.level >= currentLevel.value) {
+        useArrowsStore().removeArrow(arrow.end);
+      }
+    })
+  }
+
   // horizantal scroll to center when clide card
   const scrollDiv = (diId) => {
     showCenter.value = false;
     document.querySelectorAll(`#mainDiv${currentLevel.value} .li`).forEach(function (el) {
       el.classList.remove("active");
     });
-    document.querySelector("#" + diId).classList.add("active");
+    document.querySelector(`[id='${diId}']`).classList.add("active");
     let active = document.querySelector(`#mainDiv${currentLevel.value} .active`);
     let activeWidth = active.clientWidth / 2;
     let pos = active.getBoundingClientRect().left + activeWidth + window.scrollX;
@@ -201,6 +239,29 @@ const props = defineProps({
     }, 400)
   }
 
+  const onHover = (option, isMouseLeave) => {
+    emit('on-child-hover', option, isMouseLeave);
+  }
+
+function highlight(arrows, isMouseLeave, option) {
+   if (isMouseLeave) {
+     arrows[option.id].arrow.setOptions({color: colors.gray[200], dash: {len: 10, gap: 16}});
+   } else {
+     arrows[option.id].arrow.setOptions({color: colors.gray["600"], dash: false});
+   }
+}
+
+const onChildHover = (option, isMouseLeave) => {
+  const arrows = useArrowsStore().arrows;
+
+  highlight(arrows, isMouseLeave, option);
+
+  let event = { id: option.parent_id, parent_id: arrows[option.parent_id]?.start };
+  while (event.id) {
+    highlight(arrows, isMouseLeave, event);
+    event = { id: arrows[event.parent_id]?.start, parent_id: arrows[event.parent_id]?.end }
+  }
+}
 
 </script>
 

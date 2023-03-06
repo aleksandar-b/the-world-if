@@ -1,6 +1,6 @@
 <template>
   <div
-       class="relative border bg-slate-50 cursor-pointer rounded-2xl shadow-sm hover:drop-shadow-lg flex flex-col group"
+       class="relative border bg-slate-50 cursor-pointer rounded-2xl shadow-sm hover:drop-shadow-lg flex flex-col group hover:ring-2 hover:ring-gray-500 hover:ring-inset"
        style="width: 162px; height:158px; z-index: 3;"
        :class="(index === viewIndex) && 'ring-2 ring-gray-500 ring-inset'">
 <!--    <div class="absolute top-10 font-medium px-2 py-6 -z-10 w-full bg-gray-200 text-orange-600 border-2 border-gray-500">-->
@@ -59,8 +59,9 @@
 import Button from "@/components/Form/Button.vue";
 import {PlusSmallIcon} from "@heroicons/vue/24/outline";
 import {EyeIcon} from "@heroicons/vue/24/outline";
+import {ref, watchEffect} from "vue";
 
-defineProps({
+const props = defineProps({
   option: {
     type: Object,
     default: {}

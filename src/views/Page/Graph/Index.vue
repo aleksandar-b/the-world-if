@@ -6,7 +6,7 @@
       <MainNodeView :option="item"/>
 
       <!--      sub nodes-->
-      <Box v-if="store.getNodeById(id).length" class="mx-auto" :level="store.level" :showTree="true"
+      <Layer v-if="store.getNodeById(id).length" class="mx-auto" :level="store.level" :showTree="true"
            :options="store.getNodeById(id)"/>
       <!--      sub nodes end-->
 
@@ -19,7 +19,7 @@
 <script setup>
 import {useRoute} from "vue-router/dist/vue-router.mjs";
 import {useSearchStore} from "@/Store/SearchOptions";
-import Box from "@/views/Page/Graph/Layer.vue";
+import Layer from "@/views/Page/Graph/Layer.vue";
 import MainNodeView from "@/views/Page/Graph/MainNodeView.vue";
 import {computed} from "vue";
 

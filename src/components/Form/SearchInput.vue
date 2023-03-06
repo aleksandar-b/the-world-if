@@ -1,7 +1,8 @@
 <template>
   <div class="relative">
     <div class="flex justify-center items-end my-10">
-      <img class="float-left -ml-8" src="../../assets/logo.svg" width="240" height="64">
+      <img class="float-left z-10 mt-5 -ml-8" src="../../assets/logo-dark.svg" width="240" height="64">
+      <img class="absolute -top-10 float-left" src="../../assets/world.png" width="170" height="24">
     </div>
     <Combobox @update:modelValue="onSelect">
       <div class="relative">
