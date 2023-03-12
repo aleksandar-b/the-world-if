@@ -73,8 +73,8 @@ import ConsequenceForm from "@/components/ConsequenceForm.vue";
 import "@/assets/nodeStyle.css"
 import Event from "@/views/Page/Graph/Event.vue";
 import colors from "tailwindcss/colors";
-import {onBeforeUnmount, onUnmounted} from "@vue/runtime-core";
-
+import {onUnmounted} from "@vue/runtime-core";
+import LeaderLine from '/public/leader-line.min.mjs'
 const emit = defineEmits(['on-child-hover'])
 
 const props = defineProps({
