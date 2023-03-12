@@ -13,7 +13,7 @@
 }
 
 .bg-world-dot {
-    background-image: url(/public/map.svg);
+    background-image: url(/map.svg);
     background-position: top;
     background-repeat: no-repeat;
 }

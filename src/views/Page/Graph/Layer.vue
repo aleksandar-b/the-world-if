@@ -74,7 +74,7 @@ import "@/assets/nodeStyle.css"
 import Event from "@/views/Page/Graph/Event.vue";
 import colors from "tailwindcss/colors";
 import {onUnmounted} from "@vue/runtime-core";
-import LeaderLine from '/public/leader-line.min.mjs'
+import LeaderLine from '../../../assets/leader-line.min.js'
 const emit = defineEmits(['on-child-hover'])
 
 const props = defineProps({
