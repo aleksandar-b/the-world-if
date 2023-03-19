@@ -11,5 +11,14 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  build: {
+    rollupOptions: {
+      input: {
+        main: './src/main.ts',
+        custom: './src/assets/leader-line.min.js'
+      }
+    }
   }
+
 })

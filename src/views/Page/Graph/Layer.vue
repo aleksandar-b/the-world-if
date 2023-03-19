@@ -18,7 +18,7 @@
         </div>
       </span>
       <div :id="`mainDiv${currentLevel}`"
-           class="flex space-x-10 overflow-x-scroll overflow-y-hidden pb-10 px-10 z-20 mx-auto pt-10 rounded-md scrollbar-hide bg-repeat shadow-sm shadow-slate-200 border border-slate-200" style="background-image: url(/public/dot.png)">
+           class="flex space-x-10 overflow-x-scroll overflow-y-hidden pb-10 px-10 z-20 mx-auto pt-10 rounded-md scrollbar-hide bg-repeat shadow-sm shadow-slate-200 border border-slate-200" style="background-image: url(/src/assets/dot.png)">
 
         <!--        empty card for set center node card-->
         <div :id="`mainsub${currentLevel}first`" @click="scrollDiv(`mainsub${currentLevel}first`)" class="li"></div>
@@ -73,8 +73,8 @@ import ConsequenceForm from "@/components/ConsequenceForm.vue";
 import "@/assets/nodeStyle.css"
 import Event from "@/views/Page/Graph/Event.vue";
 import colors from "tailwindcss/colors";
-import {onBeforeUnmount, onUnmounted} from "@vue/runtime-core";
-
+import {onUnmounted} from "@vue/runtime-core";
+import LeaderLine from '../../../assets/leader-line.min.js'
 const emit = defineEmits(['on-child-hover'])
 
 const props = defineProps({

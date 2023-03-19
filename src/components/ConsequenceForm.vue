@@ -2,7 +2,7 @@
 
   <DialogBox @confirm="saveData" buttonName="Save" :heading='`Add consequence`' v-model="isOpen"
              @cancelClick="emit('update:modelValue', false)">
-    <div class="flex flex-col justify-center items-center p-2" style="background-image: url(/public/dot.png)">
+    <div class="flex flex-col justify-center items-center p-2" style="background-image: url(/dot.png)">
       <Event :option="props.option" />
       <div class="inline-block font-medium px-2 mt-2 py-0.5 rounded bg-gray-100 text-gray-600">
         <p class="text-xs uppercase">THEN</p>
