@@ -44,8 +44,8 @@ const setCategory = (item) => {
     active_category: item,
   });
 
-  const prop = `I need total 10 news topics on "${store.getEventById(id)?.name ?? ''}" impact on "${item}" with headline and paragraph with JSON like [{"title":"","description":""}`;
-  getOpenAIResponse(prop).then((resp) => {
+  const prompt = `I need total 3 news topics on "${store.getEventById(id)?.name ?? ''}" impact on "${item}" with headline and paragraph with JSON like [{"title":"","description":""}. Description should be max 316 characters.`;
+  getOpenAIResponse(prompt).then((resp) => {
     options.value = resp;
     loading.value = false;
   }).catch((resp) => {

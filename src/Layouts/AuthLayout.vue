@@ -13,7 +13,7 @@
             <label for="email-address" class="sr-only">Email address</label>
             <input type="email" name="email-address" id="email-address" autocomplete="email" required="" class="w-full min-w-0 rounded-md border-2 border-gray-500 bg-white px-4 placeholder-gray-500 shadow-sm focus:border-orange-500 focus:outline-none focus:ring-orange-500" placeholder="Enter your email" />
             <div class="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-              <button type="submit" class="flex w-full items-center justify-center rounded-md border border-transparent bg-orange-100 py-2 px-4 text-base font-medium text-red-600 hover:bg-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2">Subscribe</button>
+              <button type="submit" class="active:scale-95 inline-flex items-center justify-center rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none data-[state=open]:bg-gray-100 text-white bg-orange-500 border border-transparent hover:bg-primary-10 active:bg-orange-600 h-10 py-2 px-4 shadow-none hover:shadow-glow transition-all">Subscribe</button>
             </div>
           </form>
         </div>

@@ -8,7 +8,7 @@
       <div class="relative">
           <MagnifyingGlassIcon v-if="query === ''" class="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-400" aria-hidden="true" />
           <ArrowRightIcon v-if="query !== ''" class="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-[#61a9aa]" aria-hidden="true" />
-          <ComboboxInput :class="(query!='')&&'rounded-b-none focus-visible:shadow-none'" class="h-12 w-full border-2 border-slate-500 rounded-md bg-white pl-11 pr-4 text-gray-800 placeholder-gray-400 focus-visible:shadow focus-visible:outline-0 focus:ring-0 sm:text-sm" placeholder="Russia attacks Ukraine..." @change="query = $event.target.value" />
+          <ComboboxInput :class="(query!=='') && 'rounded-b-none focus-visible:shadow-none'" class="h-12 w-full border-2 border-slate-500 rounded-md bg-white pl-11 pr-4 text-gray-800 placeholder-gray-400 focus-visible:shadow focus-visible:outline-0 focus:ring-0 sm:text-sm" placeholder="Russia attacks Ukraine..." @change="query = $event.target.value" />
         </div>
   <!--      <div class="pointer-events-none absolute top-2.5 right-8 h-7 w-5 text-gray-400 border-l border-gray-200 pl-3" aria-hidden="true">-->
   <!--          <svg aria-hidden="true" class="mt-0.5 fill-gray-400" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px"><g><rect fill="none" height="24" width="24"/></g><g><path d="m21.41 10.59-7.99-8c-.78-.78-2.05-.78-2.83 0l-8.01 8c-.78.78-.78 2.05 0 2.83l8.01 8c.78.78 2.05.78 2.83 0l7.99-8c.79-.79.79-2.05 0-2.83zM13.5 14.5V12H10v3H8v-4c0-.55.45-1 1-1h4.5V7.5L17 11l-3.5 3.5z"/></g></svg>-->
@@ -48,23 +48,21 @@
 </template>
 
 <script setup>
-import {computed, ref} from 'vue'
+import {computed, onMounted, ref} from 'vue'
 import {MagnifyingGlassIcon, ArrowRightIcon} from '@heroicons/vue/20/solid'
 import {Combobox, ComboboxOption, ComboboxOptions, Dialog, ComboboxInput} from '@headlessui/vue'
 import {useSearchStore} from "@/Store/SearchOptions";
 import {useRoute} from "vue-router";
 import {searchOptions} from "../../utils/Constant.js";
 import {FolderIcon} from '@heroicons/vue/24/outline'
+import {onActivated} from "@vue/runtime-core";
 
 const {getEventById} = useSearchStore();
-
-const open = ref(true);
 
 const {id} = useRoute().params;
 const value = getEventById(id)?.name;
 const store = useSearchStore();
 const query = ref('');
-const searchQuery = ref(getEventById(id)?.name);
 const filteredEvents = computed(() =>
     query.value === ''
         ? searchOptions.filter((project) => {
@@ -83,10 +81,6 @@ function onSelect(item) {
   window.location = '/' + item.id + '/graph';
 }
 
-const searchData = (value) => {
-  query.value = value;
-  console.log(value);
-}
 const emit = defineEmits(['openOption'])
 
 

@@ -59,6 +59,9 @@ module.exports = {
                     "10px",
                 ],
             },
+            boxShadow: {
+                'glow': '0 0 10px 0 rgba(255, 255, 255, 0.5)'
+            },
             display: ["group-hover"]
         },
     },

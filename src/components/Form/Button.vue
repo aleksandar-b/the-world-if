@@ -29,12 +29,12 @@ defineProps({
   <a v-if="target" :target="target" :href="href"
      class="inline-flex capitalize cursor-pointer items-center justify-center px-6 py-2.5 space-x-2
             border border-transparent rounded font-semibold
-            text-sm text-white  bg-primary hover:bg-primary-hover
-            active:bg-primary-active transition ease-in-out duration-150  whitespace-nowrap">
+            text-sm text-white  bg-primary
+            transition ease-in-out duration-150  whitespace-nowrap">
     <slot/>
   </a>
   <button
-      :class="{'bg-primary-disabled cursor-not-allowed':disabled,'bg-primary hover:bg-primary-hover active:bg-primary-active':!disabled}"
+      :class="{'bg-primary-disabled cursor-not-allowed':disabled,'bg-primary hover:bg-primary-hover':!disabled}"
       :disabled="disabled"
       v-else
       :type="type"

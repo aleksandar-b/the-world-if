@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center my-4">
-    <button @click="openDialog=true" class="rounded text-gray-600 border-2 border-gray-500 p-1.5 px-5">Add </button>
+    <button @click="openDialog=true" class="rounded text-gray-600 border-2 border-gray-500 p-1.5 px-5 active:scale-95 shadow-none hover:shadow-glow transition-all">Add consequence</button>
   </div>
   <ConsequenceForm @getData="getData" :option="props.option" v-model="openDialog"/>
 </template>

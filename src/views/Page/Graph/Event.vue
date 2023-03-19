@@ -46,8 +46,14 @@
       </div>
     </div>
 
+    <div class="flex absolute inset-x-0 -top-5 justify-center space-x-4">
+      <Button @click="viewDetails(option)" class="rounded-full px-2.5 shadow bg-gray-700 hidden group-hover:block active:scale-95 transition-all">
+        <EyeIcon class="h-6 w-6"/>
+      </Button>
+    </div>
+
     <div class="flex absolute inset-x-0 -bottom-5 justify-center space-x-4">
-      <Button @click="openBox(option)" class="rounded-full px-2.5 shadow bg-gray-700 hidden group-hover:block">
+      <Button @click="openBox(option)" class="rounded-full px-2.5 shadow bg-gray-700 hidden group-hover:block active:scale-95 transition-all">
         <PlusSmallIcon class="h-6 w-6"/>
       </Button>
     </div>
@@ -72,6 +78,7 @@ const props = defineProps({
   },
   viewIndex: { type: Number, default: 0 },
   getSubOptions: { type: Function, default: () => {} },
-  openBox: { type: Function, default: () => {} }
+  openBox: { type: Function, default: () => {} },
+  viewDetails: { type: Function, default: () => {} }
 })
 </script>

@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export const getOpenAIResponse = async (prop) => {
+export const getOpenAIResponse = async (prompt) => {
     return axios.post('https://api.openai.com/v1/completions',
         {
             "model": "text-davinci-003",
-            "prompt": prop,
+            "prompt": prompt,
             "temperature": 0.7,
             "max_tokens": 1283,
             "top_p": 1,
@@ -13,7 +13,7 @@ export const getOpenAIResponse = async (prop) => {
         },
         {
             headers: {
-                'Authorization': 'Bearer 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',
+                'Authorization': 'Bearer ' + import.meta.env.VITE_OPENAI_API_KEY,
                 'OpenAI-Organization': 'org-Y75v95YV63GWfZk7f5BpEMk7',
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

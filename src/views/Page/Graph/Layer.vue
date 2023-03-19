@@ -25,7 +25,7 @@
 
         <!-- card design -->
         <div class="li" v-for="(option,index) in options" :id="`${option.id}`" @click="scrollDiv(`${option.id}`); setArrows(option)">
-          <Event :index="index" :option="option" :view-index="viewIndex" :get-sub-options="getSubOptions" :open-box="openBox" :onmouseenter="() => onHover(option)" :onmouseleave="() => onHover(option, true)" />
+          <Event :index="index" :option="option" :view-index="viewIndex" :get-sub-options="getSubOptions" :open-box="openBox" :view-details="viewDetails" :onmouseenter="() => onHover(option)" :onmouseleave="() => onHover(option, true)" />
         </div>
         <!--        empty card for set center node card-->
         <div :id="`mainsub${currentLevel}last`" @click="scrollDiv(`mainsub${currentLevel}last`)" class="li"></div>
@@ -165,6 +165,10 @@ const props = defineProps({
   const openBox = (item) => {
     openDialog.value = true;
     option.value = item;
+  }
+
+  const viewDetails = (item) => {
+    window.location = '/' + item.id + '/view'
   }
 
   // store data in sub node list when form submit
