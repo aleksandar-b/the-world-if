@@ -16,7 +16,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: './src/main.ts',
-        custom: './src/assets/leader-line.min.js'
       }
     }
   }
