@@ -1,5 +1,5 @@
 <template>
-  <div style="background-image: url(../assets/dot.png);">
+  <div style="background-image: url(/dot.png);">
     <div class="bg-white border-b border-gray-200">
       <div class="custom-container py-2 flex justify-between">
         <div class="text-center text-xl text-gray-700 font-semibold flex items-center">
