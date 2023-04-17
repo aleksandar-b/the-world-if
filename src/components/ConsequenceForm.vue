@@ -10,27 +10,28 @@
     </div>
     <form @submit.prevent="saveData">
       <div class="overflow-auto grid gap-y-4 pb-10 p-6 border-t border-gray-200">
-        <FormGroupInput required v-model="form.name" label="Title" placeholder="Price of oil decreases by 10%"/>
-        <FormMultiselect return-value="name" required :options="categories" v-model="form.category"
-                         label="Category"/>
+        <FormGroupInput classes="text-2xl" required v-model="form.name" label="Title" placeholder="Price of oil decreases by 10%"/>
 
-        <div class="grid grid-cols-2 gap-4">
-          <FormMultiselect :options="options" v-model="form.impact" label="impact"/>
-          <FormGroupInput v-model="form.magnitude" label="magnitude"/>
-        </div>
 
-        <div class="grid grid-cols-2 gap-4">
-          <FormGroupInput v-model="form.probability" label="probability"/>
-        </div>
+<!--        <div class="grid grid-cols-2 gap-4">-->
+<!--          <FormMultiselect :options="options" v-model="form.impact" label="impact"/>-->
+<!--          <FormGroupInput v-model="form.magnitude" label="magnitude"/>-->
+<!--        </div>-->
 
-        <FormGroupTextarea v-model="form.description" label="Description"/>
+<!--        <div class="grid grid-cols-2 gap-4">-->
+<!--          <FormMultiselect optional return-value="name" :options="categories" v-model="form.category"-->
+<!--                           label="Category"/>-->
+<!--          <FormGroupInput v-model="form.probability" label="Probability (optional)"/>-->
+<!--        </div>-->
 
-        <div v-for="(item,index) in form.actions" :key="index">
-          <FormGroupInput v-model="item.action" label="Action" placeholder="Buy Tesla stocks..."/>
-        </div>
-        <div>
-          <Button type="button" @click="form.actions.push({})">Add Action</Button>
-        </div>
+<!--        <FormGroupTextarea v-model="form.description" label="Description"/>-->
+
+<!--        <div v-for="(item,index) in form.actions" :key="index">-->
+<!--          <FormGroupInput v-model="item.action" label="Action" placeholder="Buy Tesla stocks..."/>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <Button type="button" @click="form.actions.push({})">Add Action</Button>-->
+<!--        </div>-->
 
         <Toggle class="mt-8" v-model="form.probability" description="Notify me when this event happens in world" label="Notify me" />
       </div>

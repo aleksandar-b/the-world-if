@@ -10,10 +10,6 @@
           <ArrowRightIcon v-if="query !== ''" class="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-[#61a9aa]" aria-hidden="true" />
           <ComboboxInput :class="(query!=='') && 'rounded-b-none focus-visible:shadow-none'" class="h-12 w-full border-2 border-slate-500 rounded-md bg-white pl-11 pr-4 text-gray-800 placeholder-gray-400 focus-visible:shadow focus-visible:outline-0 focus:ring-0 sm:text-sm" placeholder="Russia attacks Ukraine..." @change="query = $event.target.value" />
         </div>
-  <!--      <div class="pointer-events-none absolute top-2.5 right-8 h-7 w-5 text-gray-400 border-l border-gray-200 pl-3" aria-hidden="true">-->
-  <!--          <svg aria-hidden="true" class="mt-0.5 fill-gray-400" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px"><g><rect fill="none" height="24" width="24"/></g><g><path d="m21.41 10.59-7.99-8c-.78-.78-2.05-.78-2.83 0l-8.01 8c-.78.78-.78 2.05 0 2.83l8.01 8c.78.78 2.05.78 2.83 0l7.99-8c.79-.79.79-2.05 0-2.83zM13.5 14.5V12H10v3H8v-4c0-.55.45-1 1-1h4.5V7.5L17 11l-3.5 3.5z"/></g></svg>-->
-  <!--&lt;!&ndash;        <svg class="mt-0.5 fill-gray-400 rotate-180"  xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="M440 976V776q0-56-17-83t-45-53l57-57q12 11 23 23.5t22 26.5q14-19 28.5-33.5T538 571q38-35 69-81t33-161l-63 63-57-56 160-160 160 160-56 56-64-63q-2 143-44 203.5T592 631q-32 29-52 56.5T520 776v200h-80ZM248 423q-4-20-5.5-44t-2.5-50l-64 63-56-56 160-160 160 160-57 56-63-62q0 21 2 39.5t4 34.5l-78 19Zm86 176q-20-21-38.5-49T263 481l77-19q10 27 23 46t28 34l-57 57Z"/></svg>&ndash;&gt;-->
-  <!--      </div>-->
         <ComboboxOptions v-if="query !== '' && filteredEvents.length > 0" static
                          class="absolute scroll-py-2 divide-y divide-gray-100 z-10 inset-x-0 mt-4 w-full">
           <li class="w-full">
@@ -34,17 +30,28 @@
                 </li>
 
               </ComboboxOption>
-              <div v-if="query !== '' && filteredEvents.length === 0" class="py-14 px-6 text-center sm:px-14">
-                <FolderIcon class="mx-auto h-6 w-6 text-gray-400" aria-hidden="true"/>
-                <p class="mt-4 text-sm text-gray-500">We couldn't find any consequences with that query. Please try
-                  again.</p>
-              </div>
 
             </ul>
           </li>
         </ComboboxOptions>
+      <div v-if="query !== '' && !filteredEvents.length" class="bg-white border rounded-t-none border-t-1 rounded-xl -translate-y-1 border-2 border-slate-500 py-6 px-6 text-center sm:px-14">
+        <div class="text-center">
+          <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+          </svg>
+          <h3 class="mt-2 text-sm font-semibold text-gray-900">No Events</h3>
+          <p class="mt-1 text-sm text-gray-500">Get started by creating a new Event.</p>
+          <div class="mt-6">
+            <button type="button" @click="openDialog=true" class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              <PlusIcon class="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
+              Add Event
+            </button>
+          </div>
+        </div>
+      </div>
     </Combobox>
   </div>
+  <ConsequenceForm @getData="() => ({})" :option="{name: query, category:'economy' }" v-model="openDialog"/>
 </template>
 
 <script setup>
@@ -52,10 +59,10 @@ import {computed, onMounted, ref} from 'vue'
 import {MagnifyingGlassIcon, ArrowRightIcon} from '@heroicons/vue/20/solid'
 import {Combobox, ComboboxOption, ComboboxOptions, Dialog, ComboboxInput} from '@headlessui/vue'
 import {useSearchStore} from "@/Store/SearchOptions";
+import ConsequenceForm from "@/components/ConsequenceForm.vue";
 import {useRoute} from "vue-router";
 import {searchOptions} from "../../utils/Constant.js";
-import {FolderIcon} from '@heroicons/vue/24/outline'
-import {onActivated} from "@vue/runtime-core";
+import {PlusIcon} from '@heroicons/vue/24/outline'
 
 const {getEventById} = useSearchStore();
 
@@ -63,6 +70,7 @@ const {id} = useRoute().params;
 const value = getEventById(id)?.name;
 const store = useSearchStore();
 const query = ref('');
+const openDialog = ref(false);
 const filteredEvents = computed(() =>
     query.value === ''
         ? searchOptions.filter((project) => {
