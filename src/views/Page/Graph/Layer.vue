@@ -1,5 +1,4 @@
 <template>
-
   <div class="bg-slate-50 bg-repeat">
 
     <ConsequenceForm @getData="getData" v-model="openDialog" :option="option" />
@@ -44,8 +43,9 @@
         <button @click="setLevel()" type="button"
                 class="relative bg-slate-900 hover:bg-slate-700 focus:outline-none focus:ring-2
                  focus:ring-slate-400 focus:ring-offset-2 text-sm text-white font-semibold
-                 h-12 px-6 rounded-lg flex items-center dark:bg-slate-700
+                 h-12 px-4 rounded-lg flex items-center dark:bg-slate-700
                  dark:hover:bg-slate-600 pointer-events-auto">
+          <LockClosedIcon class="h-6 w-6 mr-1" />
           {{ converter.toOrdinal(currentLevel + 1) }} Order Consequences
         </button>
       </div>
@@ -63,6 +63,9 @@
 </template>
 <script setup>
 import converter from "number-to-words";
+import {
+  LockClosedIcon
+} from '@heroicons/vue/24/outline';
 import Layer from "@/views/Page/Graph/Layer.vue";
 import {useSearchStore} from "@/Store/SearchOptions";
 import {useArrowsStore} from "@/Store/Arrows";
