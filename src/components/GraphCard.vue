@@ -1,25 +1,25 @@
 <template>
   <div
-    class="flex w-full max-w-[240px] flex-col items-start rounded-2xl bg-white border-2 border-gray-300 p-4"
+    class="flex w-full max-w-[240px] flex-col items-start rounded-2xl bg-white border border-gray-300 p-4"
   >
     <div
       v-if="tag"
-      class="rounded-full bg-orange-100 px-4 py-3 text-xs font-medium text-orange-500 mb-4"
+      class="px-4 py-3 mb-4 text-xs font-medium text-orange-500 bg-orange-100 rounded-full"
     >
       {{ tag }}
     </div>
     <span class="line-clamp-2" v-if="content">
       {{ content }}
     </span>
-    <div class="mt-4 flex items-center">
+    <div class="flex items-center mt-4">
       <img
         :src="image ?? `https://ui-avatars.com/api/?name=${username}`"
         alt="profile-pic"
-        class="h-9 w-9 rounded-full border border-black"
+        class="border border-black rounded-full h-9 w-9"
       />
       <span class="ml-3 text-gray-500">{{ username }}</span>
     </div>
-    <div class="mt-4 flex items-center space-x-4">
+    <div class="flex items-center mt-4 space-x-4">
       <Tag text="15%">
         <template #icon>
           <svg

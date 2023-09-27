@@ -1,17 +1,17 @@
 <template>
   <div
-    class="flex flex-col max-w-md overflow-hidden rounded-md bg-white border border-gray-400"
+    class="flex flex-col overflow-hidden bg-white border border-gray-400 rounded-md"
   >
     <div class="flex">
-      <div class="flex flex-1 flex-col items-start">
-        <div class="rounded-br-md bg-gray-200 px-2.5 py-0.5">
-          <span class="text-sm font-medium text-gray-400">{{ tag }}</span>
+      <div class="flex flex-col items-start flex-1">
+        <div class="rounded-br-md bg-gray-100 px-2.5 py-0.5">
+          <span class="text-sm font-medium text-gray-500">{{ tag }}</span>
         </div>
         <div class="px-4 py-2">
           <slot name="left-content"></slot>
         </div>
       </div>
-      <div class="mr-4 flex flex-col justify-center">
+      <div class="flex flex-col justify-center mr-4">
         <slot name="right-content"></slot>
       </div>
     </div>
