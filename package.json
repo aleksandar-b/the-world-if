@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite --host",
+    "dev": "vite --host --port=8989",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
@@ -21,6 +21,7 @@
     "number-to-words": "^1.2.4",
     "pinia": "^2.0.28",
     "pinia-plugin-persist": "^1.0.0",
+    "swiper": "^10.3.1",
     "vue": "^3.2.45",
     "vue-axios": "^3.5.2",
     "vue-router": "^4.1.6",

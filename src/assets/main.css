@@ -14,3 +14,11 @@
     background-repeat: no-repeat;
 }
 
+.bg-dots {
+    background-image: 
+        radial-gradient(circle, #ccc 10%, transparent 10%),
+        radial-gradient(circle, #ccc 10%, transparent 10%);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
+    background-repeat: repeat;
+}
