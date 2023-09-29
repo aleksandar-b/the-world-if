@@ -1,10 +1,10 @@
 <template>
   <div
-    class="flex w-full max-w-[240px] flex-col items-start rounded-2xl bg-white border border-gray-300 p-4"
+    class="flex w-full max-w-[240px] flex-col items-start rounded-2xl bg-white border border-gray-300 p-2.5"
   >
     <div
       v-if="tag"
-      class="px-4 py-3 mb-4 text-xs font-medium text-orange-500 bg-orange-100 rounded-full"
+      class="px-2.5 py-1 mb-4 text-xs font-medium text-orange-500 bg-orange-100 rounded-full"
     >
       {{ tag }}
     </div>
@@ -15,9 +15,9 @@
       <img
         :src="image ?? `https://ui-avatars.com/api/?name=${username}`"
         alt="profile-pic"
-        class="border border-black rounded-full h-9 w-9"
+        class="w-8 h-8 border border-black rounded-full"
       />
-      <span class="ml-3 text-gray-500">{{ username }}</span>
+      <span class="ml-3 text-sm text-gray-500">{{ username }}</span>
     </div>
     <div class="flex items-center mt-4 space-x-4">
       <Tag text="15%">
