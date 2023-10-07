@@ -8,7 +8,7 @@
       </div>
       <Event :option="props.option" />
       <div>
-        <ArrowLongDownIcon class="h-5 mt-1" />
+        <ArrowLongDownIcon class="h-8 mt-1 text-gray-500" />
       </div>
     </div>
     <form @submit.prevent="saveData">
