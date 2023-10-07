@@ -10,7 +10,6 @@
            :options="store.getNodeById(id)"/>
       <!--      sub nodes end-->
 
-      <div v-else class="bg-slate-50 h-screen"></div>
     </div>
 
   </div>

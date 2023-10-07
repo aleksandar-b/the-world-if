@@ -27,7 +27,7 @@ import Spinner from "@/components/Spinner.vue";
 import {onMounted, ref} from "vue";
 import Grid from "@/views/Page/News/Grid.vue";
 import {useRoute} from "vue-router";
-import {getOpenAIResponse} from "@/services/openAi";
+import {newsAiResponse} from "@/services/news-ai";
 
 const loading = ref(false);
 const options = ref();
@@ -45,7 +45,7 @@ const setCategory = (item) => {
   });
 
   const prompt = `I need total 3 news topics on "${store.getEventById(id)?.name ?? ''}" impact on "${item}" with headline and paragraph with JSON like [{"title":"","description":""}. Description should be max 316 characters.`;
-  getOpenAIResponse(prompt).then((resp) => {
+  newsAiResponse(prompt).then((resp) => {
     options.value = resp;
     loading.value = false;
   }).catch((resp) => {

@@ -10,7 +10,7 @@
     </div>
     <form @submit.prevent="saveData">
       <div class="overflow-auto grid gap-y-4 pb-10 p-6 border-t border-gray-200">
-        <FormGroupInput classes="text-2xl" required v-model="form.name" label="Title" placeholder="Price of oil decreases by 10%"/>
+        <FormGroupInput classes="text-2xl" required v-model="form.name" label="Consequence" placeholder="Price of oil decreases by 10%"/>
 
 
 <!--        <div class="grid grid-cols-2 gap-4">-->

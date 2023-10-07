@@ -11,7 +11,7 @@
         <div class="inline-block font-medium px-2 py-0.5 rounded bg-orange-100 text-orange-600">
           <p class="text-xs uppercase">{{ option.category }}</p>
         </div>
-        <div class="font-semibold py-1 mt-1 text-gray-700 text-sm tracking-[0.01785em] line-clamp-2" :title="option.name"
+        <div class="font-semibold rounded-xl p-2 py-1 mt-1 bg-amber-100 text-gray-700 text-sm tracking-[0.01785em] line-clamp-2" :title="option.name"
              v-tooltip="option.name">
           {{ option.name }}
         </div>
@@ -45,13 +45,6 @@
         </div>
       </div>
     </div>
-
-    <div class="flex absolute inset-x-0 -top-5 justify-center space-x-4">
-      <Button @click="viewDetails(option)" class="rounded-full px-2.5 shadow bg-gray-700 hidden group-hover:block active:scale-95 transition-all">
-        <EyeIcon class="h-6 w-6"/>
-      </Button>
-    </div>
-
     <div class="flex absolute inset-x-0 -bottom-5 justify-center space-x-4">
       <Button @click="openBox(option)" class="rounded-full px-2.5 shadow bg-gray-700 hidden group-hover:block active:scale-95 transition-all">
         <PlusSmallIcon class="h-6 w-6"/>

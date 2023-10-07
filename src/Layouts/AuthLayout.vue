@@ -11,6 +11,12 @@
           <div>
             <a href="/for-business" class="ml-8 text-gray-700 hover:text-gray-900 mr-4">For Business</a>
           </div>
+          <div>
+            <a href="/trending" class="ml-8 text-gray-700 hover:text-gray-900 mr-4">Trending</a>
+          </div>
+          <div>
+            <a href="/news" class="ml-8 text-gray-700 hover:text-gray-900 mr-4">News</a>
+          </div>
         </div>
         <div class="flex justify-center items-center">
           <a href="/login" class="text-gray-700 hover:text-gray-900 mr-4">Login</a>

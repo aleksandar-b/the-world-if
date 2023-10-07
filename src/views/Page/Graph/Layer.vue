@@ -17,7 +17,7 @@
         </div>
       </span>
       <div :id="`mainDiv${currentLevel}`"
-           class="flex space-x-10 overflow-x-scroll overflow-y-hidden pb-10 px-10 z-20 mx-auto pt-10 rounded-md scrollbar-hide bg-repeat shadow-sm shadow-slate-200 border border-slate-200" style="background-image: url(/dot.png)">
+           class="flex space-x-10 space-y-10 overflow-x-scroll overflow-y-hidden pb-10 px-10 z-20 mx-auto rounded-md scrollbar-hide bg-repeat shadow-sm shadow-slate-200 border border-slate-200" style="background-image: url(/dot.png)">
 
         <!--        empty card for set center node card-->
         <div :id="`mainsub${currentLevel}first`" @click="scrollDiv(`mainsub${currentLevel}first`)" class="li"></div>
