@@ -3,38 +3,44 @@
   <DialogBox @confirm="saveData" buttonName="Save" :heading='`Add consequence`' v-model="isOpen"
              @cancelClick="emit('update:modelValue', false)">
     <div class="flex flex-col justify-center items-center p-2" style="background-image: url(/dot.png)">
+      <div class="inline-block font-medium px-2 mb-1 py-0.5 rounded bg-gray-100 text-gray-600">
+        <p class="text-xs uppercase">PARENT</p>
+      </div>
       <Event :option="props.option" />
-      <div class="inline-block font-medium px-2 mt-2 py-0.5 rounded bg-gray-100 text-gray-600">
-        <p class="text-xs uppercase">THEN</p>
+      <div>
+        <ArrowLongDownIcon class="h-5 mt-1" />
       </div>
     </div>
     <form @submit.prevent="saveData">
-      <div class="overflow-auto grid gap-y-4 pb-10 p-6 border-t border-gray-200">
+      <div class="overflow-auto grid gap-y-4 pb-10 p-6 border border-gray-200 rounded">
         <FormGroupInput classes="text-2xl" required v-model="form.name" label="Title" placeholder="Price of oil decreases by 10%"/>
 
 
-<!--        <div class="grid grid-cols-2 gap-4">-->
-<!--          <FormMultiselect :options="options" v-model="form.impact" label="impact"/>-->
-<!--          <FormGroupInput v-model="form.magnitude" label="magnitude"/>-->
-<!--        </div>-->
-
-<!--        <div class="grid grid-cols-2 gap-4">-->
-<!--          <FormMultiselect optional return-value="name" :options="categories" v-model="form.category"-->
-<!--                           label="Category"/>-->
-<!--          <FormGroupInput v-model="form.probability" label="Probability (optional)"/>-->
-<!--        </div>-->
-
-<!--        <FormGroupTextarea v-model="form.description" label="Description"/>-->
-
-<!--        <div v-for="(item,index) in form.actions" :key="index">-->
-<!--          <FormGroupInput v-model="item.action" label="Action" placeholder="Buy Tesla stocks..."/>-->
-<!--        </div>-->
-<!--        <div>-->
-<!--          <Button type="button" @click="form.actions.push({})">Add Action</Button>-->
-<!--        </div>-->
-
         <Toggle class="mt-8" v-model="form.probability" description="Notify me when this event happens in world" label="Notify me" />
-      </div>
+
+        <Button @click="showMore = !showMore">Show more</Button>
+        <div v-if="showMore" class="grid gap-y-4">
+          <div class="grid grid-cols-2 gap-3  mt-6">
+            <FormMultiselect :options="options" v-model="form.impact" label="impact"/>
+            <FormGroupInput v-model="form.magnitude" label="magnitude"/>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <FormMultiselect optional return-value="name" :options="categories" v-model="form.category"
+                             label="Category"/>
+            <FormGroupInput v-model="form.probability" label="Probability (optional)"/>
+          </div>
+
+          <FormGroupTextarea v-model="form.description" label="Description"/>
+
+          <div v-for="(item,index) in form.actions" :key="index">
+            <FormGroupInput v-model="item.action" label="Action" placeholder="Buy Tesla stocks..."/>
+          </div>
+          <div>
+            <Button type="button" @click="form.actions.push({})">Add Action</Button>
+          </div>
+        </div>
+        </div>
       <div>
         <div class=" px-4 py-3 flex sm:flex-row-reverse pt-3 ">
           <div>
@@ -63,11 +69,13 @@ import DialogBox from "./DialogBox.vue";
 import {ref, watch} from "vue";
 import Button from "@/components/Form/Button.vue";
 import {useRoute} from "vue-router";
-import FormMultiselect from "@/components/Form/FormMultiselect.vue";
 import {useSearchStore} from "@/Store/SearchOptions";
-import FormGroupTextarea from "@/components/Form/FormGroupTextarea.vue";
 import Event from "@/views/Page/Graph/Event.vue";
 import Toggle from "@/components/Form/Toggle.vue";
+import {
+  ArrowLongDownIcon,
+} from '@heroicons/vue/24/outline';
+import FormMultiselect from "@/components/Form/FormMultiselect.vue";
 
 const {categories} = useSearchStore();
 const options = [
@@ -75,7 +83,8 @@ const options = [
   {id: 'negative', name: 'Negative'},
   {id: 'neutral', name: 'Neutral'},
 ]
-const {id} = useRoute().params;
+const {id} = useRoute().params
+const showMore = ref(false);
 
 const props = defineProps({
   length: {

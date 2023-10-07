@@ -20,7 +20,7 @@ onMounted(() => {
            focus:ring focus:ring-indigo-200
            focus-visible:outline-0
            focus-visible:ring-0
-focus:ring-opacity-50 rounded-md px-4 py-2 text-sm"
+focus:ring-opacity-50 rounded-md px-4 py-2 text-sm text-gray-600"
          :value="modelValue"
          :disabled="disabled"
          @input="$emit('update:modelValue', $event.target.value)"
