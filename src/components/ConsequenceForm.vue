@@ -4,9 +4,14 @@
              @cancelClick="emit('update:modelValue', false)">
     <div class="flex flex-col justify-center items-center p-2" style="background-image: url(/dot.png)">
       <div class="inline-block font-medium px-2 mb-1 py-0.5 rounded bg-gray-100 text-gray-600">
-        <p class="text-xs uppercase">PARENT</p>
+        <p class="text-xs uppercase">PARENT STATE</p>
       </div>
-      <Event :option="props.option" />
+      <div class="border-2 rounded-2xl border-gray-200 flex items-center relative">
+        <div class="inline-block font-medium px-2 mb-1 py-0.5 rounded bg-gray-100 text-gray-600 absolute -left-[54px]">
+          <p class="text-xs uppercase">GIVEN</p>
+        </div>
+        <Event :option="props.option" />
+      </div>
       <div>
         <ArrowLongDownIcon class="h-8 mt-1 text-gray-500" />
       </div>

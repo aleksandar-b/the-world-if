@@ -6,11 +6,19 @@
     </div>
     <Combobox @update:modelValue="onSelect">
       <div class="relative">
-          <MagnifyingGlassIcon v-if="query === ''" class="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-400" aria-hidden="true" />
-          <ArrowRightIcon v-if="query !== ''" class="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-[#61a9aa]" aria-hidden="true" />
-          <ComboboxInput :class="(query!=='') && 'rounded-b-none focus-visible:shadow-none'" class="h-12 w-full border-2 border-slate-500 rounded-md bg-white pl-11 pr-4 text-gray-800 placeholder-gray-400 focus-visible:shadow focus-visible:outline-0 focus:ring-0 sm:text-sm" placeholder="Russia attacks Ukraine..." @change="query = $event.target.value" />
-        </div>
-        <ComboboxOptions v-if="query !== '' && filteredEvents.length > 0" static
+          <MagnifyingGlassIcon class="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-400" aria-hidden="true" />
+          <ComboboxInput :class="(query!=='') && 'rounded-b-none focus-visible:shadow-none'"
+                         class="h-12 w-full border-2 border-slate-500 rounded-md bg-white pl-11 pr-4 text-gray-800 placeholder-gray-400 focus-visible:shadow focus-visible:outline-0 focus:ring-0 sm:text-sm"
+                         :placeholder="value ? '' : 'Russia attacks Ukraine...'"
+                         @change="query = $event.target.value" />
+          <ArrowRightIcon class="pointer-events-none absolute top-3.5 right-4 h-5 w-5 text-[#61a9aa]" aria-hidden="true" />
+          <div class="pointer-events-none absolute top-2.5 left-11  w-6 text-[#61a9aa] inline-flex gap-1">
+             <span v-for="item in value?.split(' ')" :key="item.id" className="inline-flex items-center rounded-md bg-gray-200 text-gray-600 px-2 py-1 text-sm font-semibold ">
+                {{ item }}
+             </span>
+          </div>
+      </div>
+      <ComboboxOptions v-if="query !== '' && filteredEvents.length > 0" static
                          class="absolute scroll-py-2 divide-y divide-gray-100 z-10 inset-x-0 mt-4 w-full">
           <li class="w-full">
             <ul
@@ -28,12 +36,11 @@
                   </div>
 
                 </li>
-
               </ComboboxOption>
 
             </ul>
           </li>
-        </ComboboxOptions>
+      </ComboboxOptions>
       <div v-if="query !== '' && !filteredEvents.length" class="bg-white border rounded-t-none border-t-1 rounded-xl -translate-y-1 border-2 border-slate-500 py-6 px-6 text-center sm:px-14">
         <div class="text-center">
           <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -68,9 +75,11 @@ const {getEventById} = useSearchStore();
 
 const {id} = useRoute().params;
 const value = getEventById(id)?.name;
+
 const store = useSearchStore();
 const query = ref('');
 const openDialog = ref(false);
+
 const filteredEvents = computed(() =>
     query.value === ''
         ? searchOptions.filter((project) => {
@@ -85,11 +94,9 @@ const filteredEvents = computed(() =>
 function onSelect(item) {
   store.$patch({
     level: 1,
-  })
+  });
   window.location = '/' + item.id + '/graph';
 }
 
 const emit = defineEmits(['openOption'])
-
-
 </script>
