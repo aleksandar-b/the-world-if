@@ -7,7 +7,7 @@
       </div>
     </section>
 
-    <!--    tab section-->
+    <!-- tab section-->
     <main>
       <TabMenu @setActive="active_tab=$event" :tabs="tabs" :active="activeTab" :url="`/${id}`">
         <template #graph>
@@ -19,7 +19,6 @@
           <News/>
         </template>
       </TabMenu>
-
     </main>
   </AuthLayout>
 </template>
@@ -27,6 +26,7 @@
 import AuthLayout from "@/Layouts/AuthLayout.vue";
 import {computed, onMounted, ref} from "vue";
 import SearchInput from "@/components/Form/SearchInput.vue";
+import GraphCard from "@/components/GraphCard.vue";
 import TabMenu from "@/components/TabMenu.vue";
 import News from "@/views/Page/News/Index.vue";
 import Graph from "@/views/Page/Graph/Index.vue";
