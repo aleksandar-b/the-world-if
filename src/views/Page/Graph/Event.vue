@@ -11,7 +11,7 @@
         <div class="inline-block font-medium px-2 py-0.5 rounded bg-orange-100 text-orange-600">
           <p class="text-xs uppercase">{{ option.category }}</p>
         </div>
-        <div class="font-semibold rounded-xl p-2 py-1 mt-1 bg-amber-100 text-gray-700 text-sm tracking-[0.01785em] line-clamp-2" :title="option.name"
+        <div class="font-semibold rounded-xl p-2 py-1 mt-1 text-gray-700 text-sm tracking-[0.01785em] line-clamp-2" :title="option.name"
              v-tooltip="option.name">
           {{ option.name }}
         </div>
@@ -57,8 +57,6 @@
 
 import Button from "@/components/Form/Button.vue";
 import {PlusSmallIcon} from "@heroicons/vue/24/outline";
-import {EyeIcon} from "@heroicons/vue/24/outline";
-import {ref, watchEffect} from "vue";
 
 const props = defineProps({
   option: {
