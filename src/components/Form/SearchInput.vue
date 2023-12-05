@@ -7,15 +7,16 @@
     <Combobox @update:modelValue="onSelect">
       <div class="relative">
           <MagnifyingGlassIcon class="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-400" aria-hidden="true" />
-          <ComboboxInput :class="(query!=='') && 'rounded-b-none focus-visible:shadow-none'"
+          <ComboboxInput autofocus :class="(query!=='') && 'rounded-b-none focus-visible:shadow-none'"
                          class="h-12 w-full border-2 border-slate-500 rounded-md bg-white pl-11 pr-4 text-gray-800 placeholder-gray-400 focus-visible:shadow focus-visible:outline-0 focus:ring-0 sm:text-sm"
                          :placeholder="value ? '' : 'Russia attacks Ukraine...'"
                          @change="query = $event.target.value" />
           <ArrowRightIcon class="pointer-events-none absolute top-3.5 right-4 h-5 w-5 text-[#61a9aa]" aria-hidden="true" />
-          <div class="pointer-events-none absolute top-2.5 left-11  w-6 text-[#61a9aa] inline-flex gap-1">
+          <div v-if="value.trim() !== ''" class="absolute top-2 left-11 text-[#61a9aa] inline-flex gap-1 cursor-text">
              <span v-for="item in value?.split(' ')" :key="item.id" className="inline-flex items-center rounded-md bg-gray-200 text-gray-600 px-2 py-1 text-sm font-semibold ">
                 {{ item }}
              </span>
+            <input type="text" class="p-1 outline-0 text-gray-700" autofocus @keydown="handleBackspace" />
           </div>
       </div>
       <ComboboxOptions v-if="query !== '' && filteredEvents.length > 0" static
@@ -74,7 +75,7 @@ import {PlusIcon} from '@heroicons/vue/24/outline'
 const {getEventById} = useSearchStore();
 
 const {id} = useRoute().params;
-const value = getEventById(id)?.name;
+let value = ref(getEventById(id)?.name);
 
 const store = useSearchStore();
 const query = ref('');
@@ -90,6 +91,13 @@ const filteredEvents = computed(() =>
         })
 )
 
+function handleBackspace(event){
+  if (event.key === 'Backspace') {
+    let words = value.value.split(' ');
+    words.pop();
+    value.value = words.join(' ');
+  }
+}
 
 function onSelect(item) {
   store.$patch({

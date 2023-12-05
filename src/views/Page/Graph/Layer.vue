@@ -7,7 +7,7 @@
     <div style="width:1200px;" class="relative mx-auto snap-mandatory snap-x">
       <!-- layer name -->
       <span class="absolute left-0 -top-0 text-gray-500">
-        <div class="inline-block font-medium px-2 py-0.5 rounded-tl bg-gray-100 text-gray-600">
+        <div class="inline-block font-medium px-2 py-0.5 rounded-tl bg-gray-100 text-gray-600 border border-gray-500">
           <button class="text-xs uppercase">{{ converter.toOrdinal(currentLevel) }} order consequence</button>
         </div>
       </span>
